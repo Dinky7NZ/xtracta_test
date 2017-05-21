@@ -85,7 +85,12 @@ foreach (@$json_array) {
 #read in suppliers
 #its a csv file. its names text file tho so if the names have comma's then had more data issues to deal with the file first.
 #TODO look for csv reader instead of doing my own
-
+#One of the requirements is to make this script scalable to hundreds of thousands of suppliers.
+#This will read the entire supplier file into memory to do the matching against the lines of words
+#The list of suppliers would be small even at hundreds of thousands of records and won't cause probelms memory wise.
+#This is my main approach with the focus on speed of processing.
+#If memory is a limitation we could look at reading each supplier 1 at a time and doing the comparison.
+#This will be slower processing wise but is more memory efficient.
 print "get supplier data from $supplier_fname\n\n" if $DEBUG;
 my $suppliers_hash;
 
